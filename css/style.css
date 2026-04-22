@@ -227,4 +227,72 @@ hr { border: none; border-top: 1px solid #444; margin: 16px 0; }
   padding-top: 6px;
 }
 
+/* ── Game Menu ── */
+#game-menu {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 60;
+}
+#game-menu-panel {
+  background: #1e1e1e;
+  border: 2px solid #555;
+  border-radius: 10px;
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  min-width: 240px;
+}
+#game-menu-panel h2 {
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  color: #ccc;
+  margin-bottom: 6px;
+}
+#game-menu-panel button {
+  width: 100%;
+  padding: 11px 20px;
+  font-size: 1rem;
+  background: #333;
+  color: #eee;
+  border: 1px solid #555;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  text-align: left;
+}
+#game-menu-panel button:hover {
+  background: #4a4a4a;
+  border-color: #888;
+}
+#menu-resume { border-color: #5ea84c; color: #7ee87e; }
+#menu-resume:hover { background: #2e4a28; }
+
+/* ── Inventory screen header ── */
+#inv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+#inv-header h2 { font-size: 1.2rem; color: #ccc; letter-spacing: 1px; }
+#inv-back-btn {
+  padding: 5px 12px;
+  background: #333;
+  color: #aaa;
+  border: 1px solid #555;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+#inv-back-btn:hover { background: #4a4a4a; color: #fff; }
+
+/* ── Slot count: ensure readable on hotbar ── */
+.slot-count { font-size: 0.72rem; font-weight: 800; }
+
 .hidden { display: none !important; }

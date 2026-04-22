@@ -67,7 +67,7 @@ class Player {
     this.inventory = new Inventory();
 
     // Breaking state
-    this.breaking = false;
+    this.mouseHeld = false;   // LMB physically held
     this.breakProgress = 0;   // 0..1
     this.breakTarget = null;  // {x,y,z}
     this.breakTime = 0;       // seconds to break
@@ -173,33 +173,37 @@ class Player {
   }
 
   _updateBreaking(dt) {
-    if (!this.breaking || !this.breakTarget) return;
+    if (!this.mouseHeld) return;
 
     const hit = this.getLookTarget(this.world.getMeshes());
     if (!hit) { this._cancelBreak(); return; }
 
     const b = this.world.hitToBlock(hit);
-    if (b.x !== this.breakTarget.x || b.y !== this.breakTarget.y || b.z !== this.breakTarget.z) {
+
+    // Switched target — reset and start fresh on the new block
+    if (!this.breakTarget ||
+        b.x !== this.breakTarget.x || b.y !== this.breakTarget.y || b.z !== this.breakTarget.z) {
       this._cancelBreak();
-      this._startBreak(b, hit);
+      this._startBreak(b);
       return;
     }
 
     this.breakProgress += dt / this.breakTime;
     if (this.breakProgress >= 1) {
       this._finishBreak(b);
+      // mouseHeld stays true — next frame picks up whatever block is now in front
     }
   }
 
   startBreaking() {
-    this.breaking = true;
+    this.mouseHeld = true;
     const hit = this.getLookTarget(this.world.getMeshes());
     if (!hit) return;
     const b = this.world.hitToBlock(hit);
-    this._startBreak(b, hit);
+    this._startBreak(b);
   }
 
-  _startBreak(b, hit) {
+  _startBreak(b) {
     const blockType = this.world.get(b.x, b.y, b.z);
     if (blockType === BLOCK.AIR) return;
     this.breakTarget = b;
@@ -225,7 +229,7 @@ class Player {
   }
 
   stopBreaking() {
-    this.breaking = false;
+    this.mouseHeld = false;
     this._cancelBreak();
   }
 
@@ -238,8 +242,7 @@ class Player {
       }
     }
     this.world.set(b.x, b.y, b.z, BLOCK.AIR);
-    this.breaking = false;
-    this._cancelBreak();
+    this._cancelBreak(); // mouseHeld stays true — continuous breaking
   }
 
   placeBlock(meshes) {
