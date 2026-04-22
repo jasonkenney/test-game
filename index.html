@@ -18,7 +18,7 @@
       <div><kbd>Mouse</kbd> Look</div>
       <div><kbd>LMB</kbd> Break (hold)</div>
       <div><kbd>RMB</kbd> Place block</div>
-      <div><kbd>E</kbd> Inventory &amp; Craft</div>
+      <div><kbd>E</kbd> Menu</div>
       <div><kbd>1–9</kbd> Hotbar / scroll wheel</div>
       <div><kbd>R</kbd> Show recipes</div>
     </div>
@@ -36,8 +36,21 @@
     </div>
   </div>
 
+  <div id="game-menu" class="hidden">
+    <div id="game-menu-panel">
+      <h2>Paused</h2>
+      <button id="menu-resume">▶ Resume</button>
+      <button id="menu-inventory">🎒 Inventory &amp; Crafting</button>
+      <button id="menu-recipes">📖 Recipe Book</button>
+    </div>
+  </div>
+
   <div id="inventory-screen" class="hidden">
     <div id="inventory-panel">
+      <div id="inv-header">
+        <h2>Inventory &amp; Crafting</h2>
+        <button id="inv-back-btn">← Back</button>
+      </div>
       <div id="crafting-section">
         <h3>Crafting <span class="hint">(R for recipe list)</span></h3>
         <div id="crafting-area">
