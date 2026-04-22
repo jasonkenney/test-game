@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoxelCraft</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <canvas id="game-canvas"></canvas>
+
+  <div id="overlay">
+    <h1>VoxelCraft</h1>
+    <div class="controls-grid">
+      <div><kbd>W A S D</kbd> Move</div>
+      <div><kbd>Space</kbd> Jump</div>
+      <div><kbd>Mouse</kbd> Look</div>
+      <div><kbd>LMB</kbd> Break (hold)</div>
+      <div><kbd>RMB</kbd> Place block</div>
+      <div><kbd>E</kbd> Inventory &amp; Craft</div>
+      <div><kbd>1–9</kbd> Hotbar / scroll wheel</div>
+      <div><kbd>R</kbd> Show recipes</div>
+    </div>
+    <button id="start-btn">Click to Play</button>
+  </div>
+
+  <div id="hud">
+    <div id="crosshair">+</div>
+    <div id="look-info"></div>
+    <div id="break-indicator" class="hidden">
+      <div id="break-bar"></div>
+    </div>
+    <div id="hotbar-container">
+      <div id="hotbar"></div>
+    </div>
+  </div>
+
+  <div id="inventory-screen" class="hidden">
+    <div id="inventory-panel">
+      <div id="crafting-section">
+        <h3>Crafting <span class="hint">(R for recipe list)</span></h3>
+        <div id="crafting-area">
+          <div id="crafting-grid"></div>
+          <div id="crafting-arrow">➜</div>
+          <div id="crafting-output-area">
+            <div id="crafting-result" class="slot"></div>
+            <button id="craft-btn">Craft</button>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div id="inventory-section">
+        <h3>Inventory</h3>
+        <div id="inventory-grid"></div>
+        <div id="hotbar-inv"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="js/noise.js"></script>
+  <script src="js/blocks.js"></script>
+  <script src="js/crafting.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
