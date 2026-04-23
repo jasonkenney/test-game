@@ -28,7 +28,7 @@ class UI {
     hotbar.innerHTML = '';
     for (let i = 0; i < 9; i++) {
       const slot = document.createElement('div');
-      slot.className = 'hotbar-slot';
+      slot.className = 'slot hotbar-slot'; // 'slot' gives position:relative for count badge
       slot.dataset.slot = i;
       hotbar.appendChild(slot);
     }
@@ -176,8 +176,10 @@ class UI {
         this.craftGrid[r][c] = null;
       }
     } else {
+      const displaced = this.craftGrid[r][c]; // null or item-type string
       this.craftGrid[r][c] = this.heldItem.item;
       this.heldItem.count--;
+      if (displaced) this.inv.add(displaced, 1); // return old item to inventory
       if (this.heldItem.count <= 0) this.heldItem = null;
     }
     this.refreshInventory();
